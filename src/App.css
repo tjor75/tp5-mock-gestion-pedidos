@@ -4,24 +4,36 @@ body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
 }
-
 header, main, footer {
   padding: 5px 200px;
 }
-
 header, footer {
-  background: #ffae00;
+  background: #ffc23f;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+p { margin: 5px 0; }
+
+main {
+  flex: 1;
+  text-align: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+
+@media screen and (max-width: 1024px) {
+  header, main, footer {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+@media screen and (max-width: 600px) {
+  header, main, footer {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
