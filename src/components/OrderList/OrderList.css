@@ -1,0 +1,14 @@
+.order-list {
+    display: flex;
+    flex-direction: column;
+}
+.order-list:has(.order-list-empty) {
+    flex: 1;
+}
+.order-list-empty {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: dashed 3px #ccc;
+}

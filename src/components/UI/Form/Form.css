@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+input, select {
+    width: 100%;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+input:focus {
+    outline: solid 2px #999;
+}
+button[type="submit"] {
+    width: 100%;
+}
