@@ -10,44 +10,72 @@ export default function NewOrderModal() {
     const { lastOrderId, setLastOrderId, setOrders } = useContext(OrderContext);
     const [products, setProducts] = useState([]);
     const [open, setOpen] = useState(false);
-    const [cantPost, setCantPost] = useState(false);
-    const [client, setClient]   = useState("");
+    const [customer, setCustomer]   = useState("");
     const [date, setDate]       = useState("");
     const [status, setStatus]   = useState("");
+    const [valid, setValid]     = useState({
+        customer: null,
+        products: null
+    });
+
+    const resetForm = () => {
+        setProducts([]);
+        setLastOrderId(prev => prev + 1);
+        setCustomer(""); setDate(""); setStatus("");
+        setValid({ customer: null, products: null });
+    };
+
+    const handleCustomer = (e) => {
+        setValid(oldValid => ({...oldValid, customer: e.target.value.length > 3}));
+        setCustomer(e.target.value);
+    };
+
+    const checkSomeInvalid = () => {
+        let someInvalid = true;
+        Object.keys(valid).forEach(validFieldKey => {
+            const isNull = valid[validFieldKey] === null;
+            if (isNull)
+                setValid(oldValid => ({...oldValid, [validFieldKey] : false}));
+
+            someInvalid = someInvalid && !valid[validFieldKey];
+        });
+        return someInvalid;
+    };
 
     const onSubmit = (e) => {
-        if (cantPost) return;
+        if (checkSomeInvalid()) return;
         
         setOrders(prev => [
             ...prev,
             {
                 id: lastOrderId + 1,
-                client: e.target.client.value,
-                date: getDateOrNow(e.target.date.value),
-                status: e.target.status.value
+                customer,
+                date: getDateOrNow(date),
+                status
             }
         ]);
-        setProducts([]);
-        setLastOrderId(prev => prev + 1);
-        setClient(""); setDate(""); setStatus("");
+        resetForm();
         setOpen(false);
     };
 
     return (
         <>
             <button onClick={() => setOpen(true)}>New Order</button>
-            <Modal title="New Order" open={open} setOpen={setOpen}>
+            <Modal title="New Order" open={open} setOpen={setOpen} onClose={resetForm}>
                 <Form onSubmit={onSubmit}>
                     <div>
-                        <label htmlFor="client">Nombre del cliente</label>
+                        <label htmlFor="customer">Nombre del cliente</label>
                         <input
                             type="text"
-                            name="client"
+                            name="customer"
                             placeholder="Jorge Diaz"
-                            value={client}
-                            onChange={(e) => setClient(e.target.value)}
+                            value={customer}
+                            onChange={handleCustomer}
                         />
+                        {valid.customer === false && <p className="error">customer {">"} 3</p>}
+                    </div>
 
+                    <div>
                         <label htmlFor="date">Fecha</label>
                         <input
                             type="datetime-local"
@@ -55,7 +83,9 @@ export default function NewOrderModal() {
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                         />
+                    </div>
 
+                    <div>
                         <label htmlFor="status">Estado</label>
                         <select
                             name="status"
@@ -67,11 +97,15 @@ export default function NewOrderModal() {
                             <option value={Status.DELIVERED}>Delivered</option>
                         </select>
                     </div>
+
                     <EditProductList
-                        setCantPost={setCantPost}
+                        className="newProducts"
+                        valid={valid}
+                        setValid={setValid}
                         products={products}
                         setProducts={setProducts}
                     />
+
                     <button type="submit">Create</button>
                 </Form>
             </Modal>

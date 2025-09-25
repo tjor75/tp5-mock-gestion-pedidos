@@ -2,16 +2,16 @@ import { ProductFields } from "../../../constants/product-fields";
 import { validateStringMoreThan, validateQuantity, validatePositiveFloat } from "../../../helpers/validation-helper";
 import "./EditProductList.css";
 
-export default function EditProductList({ setCantPost, products, setProducts }) {
-    const checkAllValid = () => {
+export default function EditProductList({ className, valid, setValid, products, setProducts }) {
+    const checkAllProductsValid = () => {
         const invalid = products.some(p => p.name && p.quantity && p.price);
-        setCantPost(invalid);
+        setValid((oldValid) => ({...oldValid, [className]: invalid}));
         return invalid;
     };
 
     const addProduct = (e) => {
         e.preventDefault();
-        if (products.length > 0 && !checkAllValid()) return;
+        if (products.length > 0 && !checkAllProductsValid()) return;
         setProducts(oldProducts => [
             ...oldProducts,
             { name: undefined, quantity: undefined, price: undefined }
@@ -58,7 +58,7 @@ export default function EditProductList({ setCantPost, products, setProducts }) 
                 <h3>Products</h3>
                 <button onClick={addProduct}>&#65291; Agregar</button>
             </div>
-            {products.length !== 0 && (
+            {products.length !== 0 ? (
                 <table>
                     <thead>
                         <tr>
@@ -109,6 +109,8 @@ export default function EditProductList({ setCantPost, products, setProducts }) 
                     ))}
                     </tbody>
                 </table>
+            ) : (
+                <p>Agregue un producto</p>
             )}
         </div>
     );
