@@ -12,9 +12,9 @@ const getFromLocalStorage = (key, defaultValue, callbackFn) => {
 
 const saveFromLocalStorage = (key, callbackFn) => {
     try {
-        localStorage.saveItem(key, callbackFn());
+        localStorage.setItem(key, callbackFn());
     } catch (error) {
-        console.error(`Can't parse ${key} from localStorage. Resetting to default value`, );
+        console.error(`Can't parse ${key} from localStorage. Resetting to default value`);
     }
 };
 
@@ -34,11 +34,11 @@ export const getOrdersFromLocalStorage = () => {
 
 
 export const saveLastOrderIdToLocalStorage = (lastOrderId) => {
-    saveFromLocalStorage("lastOrderId", 0, () => lastOrderId);
+    saveFromLocalStorage("lastOrderId", () => lastOrderId);
 };
 
 export const saveOrdersToLocalStorage = (orders) => {
-    saveFromLocalStorage("orders", [], () => (
+    saveFromLocalStorage("orders", () => (
         JSON.stringify(orders.map(order => ({
             ...order,
             date: new Date(order.date)

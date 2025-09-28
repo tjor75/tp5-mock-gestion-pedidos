@@ -7,7 +7,7 @@ export default function OrderList() {
     const { orders } = useContext(OrderContext);
 
     return (
-        <table className="order-list">
+        <div className="order-list">
 
             {orders.length !== 0 ? (
                 <>
@@ -31,6 +31,6 @@ export default function OrderList() {
                     <p>No orders available</p>
                 </div>
             )}
-        </table>
+        </div>
     );
 }

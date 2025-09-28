@@ -5,6 +5,7 @@ import { getDateOrNow } from "../../helpers/validation-helper";
 import Form from "../UI/Form";
 import Modal from "../UI/Modal";
 import EditProductList from "../UI/EditProductList";
+import IconPlus from "../UI/Icons/IconPlus";
 
 export default function NewOrderModal() {
     const { lastOrderId, setLastOrderId, setOrders } = useContext(OrderContext);
@@ -60,7 +61,10 @@ export default function NewOrderModal() {
 
     return (
         <>
-            <button onClick={() => setOpen(true)}>New Order</button>
+            <button onClick={() => setOpen(true)}>
+                <IconPlus />
+                <span>New Order</span>
+            </button>
             <Modal title="New Order" open={open} setOpen={setOpen} onClose={resetForm}>
                 <Form onSubmit={onSubmit}>
                     <div>

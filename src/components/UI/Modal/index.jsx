@@ -4,7 +4,6 @@ export default function Modal({ title, children, open, setOpen, onClose=null }) 
     const onCloseAction = () => {
         if (onClose) onClose();
         setOpen(!open);
-        console.log(open);
     };
 
     return (

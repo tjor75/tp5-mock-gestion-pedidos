@@ -6,13 +6,9 @@ export default function Header() {
     return (
         <header>
             <img src={logo} />
-            <nav>
-                <input type="checkbox" id="nav-toggle" />
-                <label htmlFor="nav-toggle">MENU</label>
-                <ul>
-                    <li><NewOrderModal /></li>
-                </ul>
-            </nav>
+            <nav><ul>
+                <li><NewOrderModal /></li>
+            </ul></nav>
         </header>
     );
 }
