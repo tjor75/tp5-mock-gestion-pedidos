@@ -103,7 +103,7 @@ export default function NewOrderModal() {
                     </div>
 
                     <EditProductList
-                        className="newProducts"
+                        elementId="newProducts"
                         valid={valid}
                         setValid={setValid}
                         products={products}
