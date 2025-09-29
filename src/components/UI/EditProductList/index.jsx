@@ -110,7 +110,7 @@ export default function EditProductList({ elementId, valid, setValid, products, 
                     </tbody>
                 </table>
             ) : (
-                <p className={valid[elementId] === false && "error"}>Agregue un producto</p>
+                <p className={valid[elementId] === false ? "error" : ""}>Agregue un producto</p>
             )}
         </div>
     );

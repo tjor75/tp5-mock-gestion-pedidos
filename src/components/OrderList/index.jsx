@@ -7,30 +7,27 @@ export default function OrderList() {
     const { orders } = useContext(OrderContext);
 
     return (
-        <div className="order-list">
-
+        <section className="order-list">
             {orders.length !== 0 ? (
                 <>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <div>
+                        <p>ID</p>
+                        <p>Cliente</p>
+                        <p>Fecha</p>
+                        <p>Estado</p>
+                        <p></p>
+                    </div>
+                    <div>
                     {orders.map(order => (
                         <Order key={order.id} order={order} />
                     ))}
-                    </tbody>
+                    </div>
                 </>
             ) : (
                 <div className="order-list-empty">
                     <p>No orders available</p>
                 </div>
             )}
-        </div>
+        </section>
     );
 }

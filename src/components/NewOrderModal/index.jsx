@@ -52,7 +52,8 @@ export default function NewOrderModal() {
                 id: lastOrderId + 1,
                 customer,
                 date: getDateOrNow(date),
-                status
+                status,
+                products
             }
         ]);
         resetForm();

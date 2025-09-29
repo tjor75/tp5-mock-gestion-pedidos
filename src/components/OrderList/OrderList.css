@@ -1,14 +1,21 @@
 .order-list {
-    display: flex;
-    flex-direction: column;
+    display: table;
+    border-radius: var(--border-radius);
 }
+.order-list > div {
+    display: table-row;
+}
+.order-list > div > p {
+    display: table-cell;
+}
+.order-list > div > p:first-child {
+    font-weight: bold;
+}
+
 .order-list:has(.order-list-empty) {
-    flex: 1;
-}
-.order-list-empty {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     border: dashed 3px #ccc;
+    flex: 1;
 }

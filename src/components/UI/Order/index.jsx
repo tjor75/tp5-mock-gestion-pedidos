@@ -6,24 +6,36 @@ export default function Order({ order }) {
     const [openModal, setOpenModal] = useState(false);
 
     return (
-        <tr className="order">
-            <td>#{order.id}</td>
-            <td>{order.client}</td>
-            <td>{new Date(order.date).toLocaleString()}</td>
-            <td>{order.status}</td>
-            <td>
+        <div className="order">
+            <div>#{order.id}</div>
+            <div>{order.client}</div>
+            <div>{new Date(order.date).toLocaleString()}</div>
+            <div>{order.status}</div>
+            <div>
                 <button onClick={() => setOpenModal(true)}>Ver</button>
-                <Modal openModal={openModal} onClose={() => setOpenModal(false)} title="Order Details">
+                <Modal title="Order Details" openModal={openModal} setOpenModal={setOpenModal}>
                     <div className="order-details">
-                        <p><strong>Client:</strong> {order.client}</p>
-                        <p><strong>Date:</strong> {new Date(order.date).toLocaleString()}</p>
-                        <p><strong>Status:</strong> {order.status}</p>
-                        <p><strong>Quantity:</strong> {order.quantity}</p>
-                        <p><strong>Product:</strong> {order.product}</p>
-                        <p><strong>ID:</strong> {order.id}</p>
+                        <div>
+                            <h3>Client</h3>
+                            <p>{order.customer}</p>
+                        </div>
+                        <div>
+                            <h3>Date</h3>
+                            <p>{new Date(order.date).toLocaleString()}</p>
+                        </div>
+                        <div>
+                            <h3>Status</h3>
+                            <p>{order.status}</p>
+                        </div>
+                        <div>
+                            <h3>Products</h3>
+                            {order.products.map(product => (
+                                <p key={product.id}>{product.name} - (x{product.quantity})</p>
+                            ))}
+                        </div>
                     </div>
                 </Modal>
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 }

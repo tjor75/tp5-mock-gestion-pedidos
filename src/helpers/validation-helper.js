@@ -4,7 +4,7 @@ export const validateStringMoreThan = (str, minLength, defaultValue) => {
 };
 
 export const validateQuantity = (quantity, defaultValue) => {
-    return Number.isInteger(quantity) && quantity > 0 ? quantity : defaultValue;
+    return Number.isInteger(parseInt(quantity, 10)) && quantity > 0 ? quantity : defaultValue;
 };
 
 export const getDateOrNow = (dateString) => {
