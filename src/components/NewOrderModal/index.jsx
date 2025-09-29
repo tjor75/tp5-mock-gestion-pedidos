@@ -32,13 +32,13 @@ export default function NewOrderModal() {
     };
 
     const checkSomeInvalid = () => {
-        let someInvalid = true;
+        let someInvalid = false;
         Object.keys(valid).forEach(validFieldKey => {
             const isNull = valid[validFieldKey] === null;
             if (isNull)
                 setValid(oldValid => ({...oldValid, [validFieldKey] : false}));
 
-            someInvalid = someInvalid && !valid[validFieldKey];
+            someInvalid = someInvalid || !valid[validFieldKey];
         });
         return someInvalid;
     };
