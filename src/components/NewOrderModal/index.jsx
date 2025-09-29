@@ -16,14 +16,14 @@ export default function NewOrderModal() {
     const [status, setStatus]   = useState("");
     const [valid, setValid]     = useState({
         customer: null,
-        products: null
+        newProducts: null
     });
 
     const resetForm = () => {
         setProducts([]);
         setLastOrderId(prev => prev + 1);
         setCustomer(""); setDate(""); setStatus("");
-        setValid({ customer: null, products: null });
+        setValid({ customer: null, newProducts: null });
     };
 
     const handleCustomer = (e) => {
