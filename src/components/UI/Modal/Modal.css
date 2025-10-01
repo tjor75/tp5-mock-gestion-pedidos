@@ -20,6 +20,13 @@
     max-width: 500px;
 }
 
+.modal-content .w-100 {
+    width: 100%;
+}
+.modal-content .w-50 {
+    width: calc(50% - 5px);
+}
+
 .modal-close {
     color: #aaa;
     float: right;
@@ -33,4 +40,11 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 600px) {
+    .modal-content .w-50 {
+        width: 100%;
+    }
 }

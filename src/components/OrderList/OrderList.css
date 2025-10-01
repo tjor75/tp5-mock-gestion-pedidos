@@ -1,6 +1,6 @@
 .order-list {
     display: table;
-    border-radius: var(--border-radius);
+    border-radius: 0;
 }
 .order-list > div {
     display: table-row;

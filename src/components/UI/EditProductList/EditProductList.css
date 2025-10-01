@@ -1,3 +1,10 @@
 .edit-product-list {
     width: 100%;
 }
+.edit-product-list span {
+    width: 10px;
+    margin-right: 5px;
+}
+.edit-product-list input {
+    width: calc(100% - 15px);
+}

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Status } from "../../constants/status";
 import { OrderContext } from "../../contexts/OrderContext";
 import { getDateOrNow } from "../../helpers/validation-helper";
@@ -8,21 +8,28 @@ import EditProductList from "../UI/EditProductList";
 import IconPlus from "../UI/Icons/IconPlus";
 
 export default function NewOrderModal() {
-    const { lastOrderId, setLastOrderId, setOrders } = useContext(OrderContext);
+    const { lastOrderId, setLastOrderId, orders, setOrders } = useContext(OrderContext);
     const [products, setProducts] = useState([]);
     const [open, setOpen] = useState(false);
     const [customer, setCustomer]   = useState("");
-    const [date, setDate]       = useState("");
-    const [status, setStatus]   = useState("");
-    const [valid, setValid]     = useState({
+    const [date, setDate]           = useState("");
+    const [status, setStatus] = useState(Status.PENDING);
+    const [valid, setValid] = useState({
         customer: null,
         newProducts: null
     });
 
+    useEffect(() => {
+        resetForm();
+        setOpen(false);
+    }, [orders]);
+
     const resetForm = () => {
         setProducts([]);
         setLastOrderId(prev => prev + 1);
-        setCustomer(""); setDate(""); setStatus("");
+        setCustomer("");
+        setDate("");
+        setStatus(Status.PENDING.toString());
         setValid({ customer: null, newProducts: null });
     };
 
@@ -43,7 +50,7 @@ export default function NewOrderModal() {
         return someInvalid;
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = () => {
         if (checkSomeInvalid()) return;
         
         setOrders(prev => [
@@ -52,12 +59,10 @@ export default function NewOrderModal() {
                 id: lastOrderId + 1,
                 customer,
                 date: getDateOrNow(date),
-                status,
+                status: parseInt(status, 10),
                 products
             }
         ]);
-        resetForm();
-        setOpen(false);
     };
 
     return (
@@ -68,8 +73,8 @@ export default function NewOrderModal() {
             </button>
             <Modal title="New Order" open={open} setOpen={setOpen} onClose={resetForm}>
                 <Form onSubmit={onSubmit}>
-                    <div>
-                        <label htmlFor="customer">Nombre del cliente</label>
+                    <div className="w-100">
+                        <label htmlFor="customer" className="required">Nombre del cliente</label>
                         <input
                             type="text"
                             name="customer"
@@ -80,7 +85,7 @@ export default function NewOrderModal() {
                         {valid.customer === false && <p className="error">customer {">"} 3</p>}
                     </div>
 
-                    <div>
+                    <div className="w-50">
                         <label htmlFor="date">Fecha</label>
                         <input
                             type="datetime-local"
@@ -90,7 +95,7 @@ export default function NewOrderModal() {
                         />
                     </div>
 
-                    <div>
+                    <div className="w-50">
                         <label htmlFor="status">Estado</label>
                         <select
                             name="status"
