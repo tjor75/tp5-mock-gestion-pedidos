@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Step Progress Bar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f9;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="progress-container">
+    <div class="progress-active-line" style="width: 50%;"></div>
+    <div class="step active">
+        <div class="circle">1</div>
+        <div class="label">Pending</div>
+    </div>
+    <div class="step active">
+        <div class="circle">2</div>
+        <div class="label">Doing</div>
+    </div>
+    <div class="step">
+        <div class="circle">3</div>
+        <div class="label">Done</div>
+    </div>
+  </div>
+</body>
+</html>

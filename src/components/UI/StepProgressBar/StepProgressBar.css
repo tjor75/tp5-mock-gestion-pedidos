@@ -1,0 +1,70 @@
+.step-progress {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    position: relative;
+}
+
+.step-progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 400px;
+    top: -15px;
+}
+
+/* The connecting line */
+.step-progress-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background: #dcdcdc;
+    z-index: 0;
+}
+
+/* Active line */
+.step-progress-active-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 50%; /* Change percentage based on step */
+    background: #4caf50;
+    z-index: 0;
+    transition: width 0.3s ease;
+}
+
+.step {
+    background: #dcdcdc;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+.step.active {
+    background: #4caf50;
+}
+
+.step-circle {
+    color: #fff;
+    font-weight: bold;
+}
+.step-label {
+    color: #000;
+    position: absolute;
+    bottom: -30px;
+}
+.step.active .step-label {
+    color: #4caf50;
+    font-weight: bold;
+}
