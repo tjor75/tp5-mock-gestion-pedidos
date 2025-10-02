@@ -69,7 +69,7 @@ export default function NewOrderModal() {
                             value={customer}
                             onChange={(e) => setCustomer(e.target.value)}
                         />
-                        {!(customer === "" && customer.length < 3) && (
+                        {(customer !== "" && customer.length < 3) && (
                             <p className="error">Min. 3 caracteres</p>
                         )}
                     </div>
