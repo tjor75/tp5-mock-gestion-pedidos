@@ -5,13 +5,15 @@
   --vertical-margin: 5px;
   --primary-color: #0072ce;
   --primary-color-hover: #2780c9;
+  --secondary-color: #ffc23f;
+  --secondary-color-hover: #e9b42f;
   --border-radius: 10px;
 }
-body {
+body, button, select, input, textarea {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-  margin: 0;
 }
+body { margin: 0; }
 #root {
   display: flex;
   flex-direction: column;
@@ -24,7 +26,6 @@ header, footer {
 }
 
 p { margin: var(--vertical-margin) 0; }
-
 div {
   border-radius: var(--border-radius);
 }
@@ -35,9 +36,12 @@ button, select, input, textarea {
   border: 1px solid #ccc;
   border-radius: var(--border-radius);
 }
+select { background: #fff; }
 button {
   cursor: pointer;
   border: none;
+  border-radius: 0;
+  padding: 5px;
 }
 button.primary, nav li > button {
   background: var(--primary-color);
@@ -45,6 +49,13 @@ button.primary, nav li > button {
 }
 button.primary:hover, nav li > button:hover {
   background: var(--primary-color-hover);
+}
+button.secondary {
+  background: var(--secondary-color);
+  color: #000;
+}
+button.secondary:hover {
+  background: var(--secondary-color-hover);
 }
 
 main {
@@ -55,14 +66,11 @@ main {
   gap: 8px;
 }
 
-.order-controls {
-  display: flex;
-  justify-content: space-between;
-}
-
 table {
   width: 100%;
 }
+
+.mobile { display: none; }
 
 .error { color: red; }
 .note {
@@ -89,5 +97,8 @@ table {
   header, main, footer {
     padding-left: 8px;
     padding-right: 8px;
+  }
+  .mobile {
+    display: unset;
   }
 }

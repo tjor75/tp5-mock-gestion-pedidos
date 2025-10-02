@@ -6,7 +6,7 @@ export const checkStringMoreThan = (str, minLength) => {
 export const getDateOrNow = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
-    return !isNaN(date.valueOf()) && date >= now;
+    return !isNaN(date.valueOf()) ? date : now;
 };
 
 export const checkPositiveInteger = (value) => {

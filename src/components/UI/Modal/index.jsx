@@ -1,7 +1,8 @@
 import "./Modal.css";
 
 export default function Modal({ title, children, open, setOpen, onClose=null }) {
-    const onCloseAction = () => {
+    const onCloseAction = (e) => {
+        e.stopPropagation();
         if (onClose) onClose();
         setOpen(!open);
     };

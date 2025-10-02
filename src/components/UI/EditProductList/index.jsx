@@ -1,5 +1,10 @@
 import { ProductFields } from "../../../constants/product-fields";
-import { checkAllProductsValid, checkStringMoreThan, checkPositiveInteger, checkPositiveZeroFloat } from "../../../helpers/validation-helper";
+import {
+    checkAllProductsValid,
+    checkStringMoreThan,
+    checkPositiveInteger,
+    checkPositiveZeroFloat
+} from "../../../helpers/validation-helper";
 import IconDelete from "../Icons/IconDelete";
 import "./EditProductList.css";
 
@@ -55,7 +60,7 @@ export default function EditProductList({ products, setProducts }) {
         <div className="edit-product-list">
             <div className="space-between">
                 <h3 className="required">Products</h3>
-                <button onClick={addProduct}>&#65291; Agregar</button>
+                <button className="secondary" onClick={addProduct}>&#65291; Agregar</button>
             </div>
             {products.length !== 0 ? (
                 <table>

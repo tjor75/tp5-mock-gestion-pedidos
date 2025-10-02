@@ -11,16 +11,18 @@ export default function OrderList() {
         <section className="order-list">
             {filteredOrders.length !== 0 ? (
                 <>
-                    <div>
+                    <div className="order-list-header">
                         <p>ID</p>
                         <p>Cliente</p>
                         <p>Fecha</p>
                         <p>Estado</p>
-                        <p></p>
+                        <p>Acciones</p>
                     </div>
-                    {filteredOrders.map(order => (
-                        <Order key={order.id} order={order} />
-                    ))}
+                    <div className="order-list-rows">
+                        {filteredOrders.map(order => (
+                            <Order key={order.id} order={order} />
+                        ))}
+                    </div>
                 </>
             ) : (
                 <div className="order-list-empty">

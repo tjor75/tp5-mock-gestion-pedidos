@@ -7,9 +7,6 @@ import Form from "../UI/Form";
 import Modal from "../UI/Modal";
 import EditProductList from "../UI/EditProductList";
 import IconPlus from "../UI/Icons/IconPlus";
-import IconTime from "../UI/Icons/IconTime";
-import IconForward from "../UI/Icons/IconForward";
-import IconCheck from "../UI/Icons/IconCheck";
 
 export default function NewOrderModal() {
     const { lastOrderId, setLastOrderId, orders, setOrders } = useContext(OrderContext);
@@ -105,7 +102,7 @@ export default function NewOrderModal() {
                         setProducts={setProducts}
                     />
 
-                    <button type="submit">Crear</button>
+                    <button className="primary" type="submit">Crear</button>
                 </Form>
             </Modal>
         </>
