@@ -7,6 +7,9 @@ import Form from "../UI/Form";
 import Modal from "../UI/Modal";
 import EditProductList from "../UI/EditProductList";
 import IconPlus from "../UI/Icons/IconPlus";
+import IconTime from "../UI/Icons/IconTime";
+import IconForward from "../UI/Icons/IconForward";
+import IconCheck from "../UI/Icons/IconCheck";
 
 export default function NewOrderModal() {
     const { lastOrderId, setLastOrderId, orders, setOrders } = useContext(OrderContext);
@@ -52,7 +55,7 @@ export default function NewOrderModal() {
         <>
             <button onClick={() => setOpen(true)}>
                 <IconPlus />
-                <span>Nueva órden</span>
+                <span>Nuevo</span>
             </button>
             <Modal title="Nueva órden" open={open} setOpen={setOpen} onClose={resetForm}>
                 <Form onSubmit={onSubmit}>

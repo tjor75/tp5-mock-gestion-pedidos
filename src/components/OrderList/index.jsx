@@ -4,11 +4,12 @@ import Order from "../Order";
 import "./OrderList.css";
 
 export default function OrderList() {
-    const { orders } = useContext(OrderContext);
+    const { orders, filter } = useContext(OrderContext);
+    const filteredOrders = filter === null ? orders : orders.filter(order => order.status === filter);
 
     return (
         <section className="order-list">
-            {orders.length !== 0 ? (
+            {filteredOrders.length !== 0 ? (
                 <>
                     <div>
                         <p>ID</p>
@@ -17,7 +18,7 @@ export default function OrderList() {
                         <p>Estado</p>
                         <p></p>
                     </div>
-                    {orders.map(order => (
+                    {filteredOrders.map(order => (
                         <Order key={order.id} order={order} />
                     ))}
                 </>
