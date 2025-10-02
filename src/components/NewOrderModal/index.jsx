@@ -29,18 +29,6 @@ export default function NewOrderModal() {
         setStatus(Status.PENDING.toString());
     };
 
-    /*const checkSomeInvalid = () => {
-        let someInvalid = false;
-        Object.keys(valid).forEach(validFieldKey => {
-            const isNull = valid[validFieldKey] === null;
-            if (isNull)
-                setValid(oldValid => ({...oldValid, [validFieldKey] : false}));
-
-            someInvalid = someInvalid || !valid[validFieldKey];
-        });
-        return someInvalid;
-    };*/
-
     const onSubmit = () => {
         if (customer.length < 3 || (products.length > 0 && !checkAllProductsValid(products))) return;
         
@@ -72,13 +60,14 @@ export default function NewOrderModal() {
                         <label htmlFor="customer" className="required">Nombre del cliente</label>
                         <input
                             type="text"
+                            id="customer"
                             name="customer"
                             placeholder="Jorge Diaz"
                             value={customer}
                             onChange={(e) => setCustomer(e.target.value)}
                         />
                         {!(customer === "" && customer.length < 3) && (
-                            <p className="error">Mínimo 3 caracteres</p>
+                            <p className="error">Min. 3 caracteres</p>
                         )}
                     </div>
 
@@ -86,16 +75,18 @@ export default function NewOrderModal() {
                         <label htmlFor="date">Fecha</label>
                         <input
                             type="datetime-local"
+                            id="date"
                             name="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                         />
-                        <p className="note">Por defecto: fecha actual</p>
+                        <p className="note">Por defecto: ahora</p>
                     </div>
 
                     <div className="w-50">
                         <label htmlFor="status">Estado</label>
                         <select
+                            id="status"
                             name="status"
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
@@ -107,12 +98,11 @@ export default function NewOrderModal() {
                     </div>
 
                     <EditProductList
-                        elementId="newProducts"
                         products={products}
                         setProducts={setProducts}
                     />
 
-                    <button type="submit">Create</button>
+                    <button type="submit">Crear</button>
                 </Form>
             </Modal>
         </>

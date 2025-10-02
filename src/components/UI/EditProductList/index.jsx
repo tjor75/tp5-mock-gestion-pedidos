@@ -3,16 +3,7 @@ import { checkAllProductsValid, checkStringMoreThan, checkPositiveInteger, check
 import IconDelete from "../Icons/IconDelete";
 import "./EditProductList.css";
 
-export default function EditProductList({ elementId, products, setProducts }) {    
-    /*const checkAllProductsValid = () => {
-        const allValid = products.every(product => checkProduct(product));
-        setValid((oldValid) => ({
-            ...oldValid,
-            [elementId]: allValid
-        }));
-        return allValid;
-    };*/
-
+export default function EditProductList({ products, setProducts }) {    
     const addProduct = (e) => {
         e.preventDefault();
         if (products.length > 0 && !checkAllProductsValid(products)) return;
@@ -61,7 +52,7 @@ export default function EditProductList({ elementId, products, setProducts }) {
     }
 
     return (
-        <div id={elementId} className="edit-product-list">
+        <div className="edit-product-list">
             <div className="space-between">
                 <h3 className="required">Products</h3>
                 <button onClick={addProduct}>&#65291; Agregar</button>
