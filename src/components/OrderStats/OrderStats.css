@@ -1,0 +1,46 @@
+.stats-card {
+    display: flex;
+    flex-wrap: nowrap;
+    background: var(--primary-color);
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 20px;
+}
+
+.main-stat {
+    text-align: center;
+}
+.main-stat .stat-value {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.stats-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+}
+
+.stat {
+    text-align: center;
+    border-radius: 6px;
+}
+.stat-title {
+    font-weight: 500;
+    color: #eee;
+    font-size: 0.9rem;
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .stats-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}

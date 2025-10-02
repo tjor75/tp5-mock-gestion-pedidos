@@ -8,6 +8,7 @@ import {
 } from "./utils/localStorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import OrderStats from "./components/OrderStats";
 import OrderList from "./components/OrderList";
 import "./App.css";
 
@@ -25,8 +26,7 @@ export default function App() {
         <OrderContext.Provider value={{ lastOrderId, setLastOrderId, orders, setOrders, filter, setFilter }}>
             <Header />
             <main>
-                <div className="order-controls">
-                </div>
+                <OrderStats />
                 <OrderList />
             </main>
             <Footer />
