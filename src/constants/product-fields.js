@@ -1,5 +1,5 @@
 export const ProductFields = Object.freeze({
-    NAME: 1,
-    QUANTITY: 2,
-    PRICE: 3
+    NAME: 0,
+    QUANTITY: 1,
+    PRICE: 2
 });

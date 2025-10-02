@@ -1,5 +1,3 @@
 export default function IconMenu() {
-    return (
-        <i className="icon icon-menu"></i>
-    );
+    return <i className="icon icon-menu" />
 }

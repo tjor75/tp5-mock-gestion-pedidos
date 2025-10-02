@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { getStatusName } from "../../helpers/enum-helper";
+import { OrderContext } from "../../contexts/OrderContext";
 import Modal from "../UI/Modal";
 import ProductList from "../UI/ProductList";
+import IconDelete from "../UI/Icons/IconDelete";
 import StatusProgressBar from "../StatusProgressBar";
 import "./Order.css";
 
 export default function Order({ order }) {
+    const { setOrders } = useContext(OrderContext);
     const [openModal, setOpenModal] = useState(false);
+    const dateLocaleString = new Date(order.date).toLocaleString();
 
     return (
         <div className="order">
             <p>#{order.id}</p>
             <p>{order.customer}</p>
-            <p>{new Date(order.date).toLocaleString()}</p>
-            <p>{order.status}</p>
+            <p>{dateLocaleString}</p>
+            <p>{getStatusName(order.status)}</p>
             <div>
                 <button onClick={() => setOpenModal(true)}>Ver</button>
                 <Modal title={"Orden #" + order.id} open={openModal} setOpen={setOpenModal}>
@@ -23,7 +28,7 @@ export default function Order({ order }) {
                         </div>
                         <div className="w-50">
                             <h3>Fecha</h3>
-                            <p>{new Date(order.date).toLocaleString()}</p>
+                            <p>{dateLocaleString}</p>
                         </div>
                         <div className="w-100">
                             <h3>Estado</h3>
@@ -35,6 +40,10 @@ export default function Order({ order }) {
                         </div>
                     </div>
                 </Modal>
+
+                <button onClick={() => setOrders(prev => prev.filter(o => o.id !== order.id))}>
+                    <IconDelete />
+                </button>
             </div>
         </div>
     );

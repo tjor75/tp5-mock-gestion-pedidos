@@ -1,34 +1,34 @@
-export const validateStringMoreThan = (str, minLength, defaultValue) => {
+export const checkStringMoreThan = (str, minLength) => {
     const trim = str.trim();
-    return trim.length >= minLength ? trim : defaultValue;
-};
-
-export const validateQuantity = (quantity, defaultValue) => {
-    return Number.isInteger(parseInt(quantity, 10)) && quantity > 0 ? quantity : defaultValue;
+    return trim.length >= minLength;
 };
 
 export const getDateOrNow = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
-    return !isNaN(date.valueOf()) && date >= now ? date : now;
+    return !isNaN(date.valueOf()) && date >= now;
 };
 
-export const validateFloat = (value, defaultValue) => {
-    const parsedFloat = parseFloat(value);
-    return !isNaN(parsedFloat) && parsedFloat >= 0 ? parsedFloat : defaultValue;
+export const checkPositiveInteger = (value) => {
+    const parsedNumber = Number(value);
+    return Number.isInteger(parsedNumber) && parsedNumber > 0;
 };
 
-export const validatePositiveFloat = (value, defaultValue) => {
-    const parsedFloat = parseFloat(value);
-    return !isNaN(parsedFloat) && parsedFloat >= 0 ? parsedFloat : defaultValue;
+export const checkPositiveZeroFloat = (value) => {
+    const parsedNumber = Number(value);
+    return !isNaN(parsedNumber) && parsedNumber >= 0;
 };
 
 
 
+const checkProduct = (product) => {
+    return (
+        checkStringMoreThan(product.name, 3) &&
+        checkPositiveInteger(product.quantity) &&
+        checkPositiveZeroFloat(product.price)
+    );
+};
 
-/*
-    quantity > 0
-    customer mínimo 3 caracteres
-    status por defecto: pending
-    date por defecto: fecha actual
-    */
+export const checkAllProductsValid = (products) => {
+    return products.every(product => checkProduct(product));
+};

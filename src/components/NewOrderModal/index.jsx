@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Status } from "../../constants/status";
+import { getStatusName } from "../../helpers/enum-helper";
+import { checkAllProductsValid, getDateOrNow } from "../../helpers/validation-helper";
 import { OrderContext } from "../../contexts/OrderContext";
-import { getDateOrNow } from "../../helpers/validation-helper";
 import Form from "../UI/Form";
 import Modal from "../UI/Modal";
 import EditProductList from "../UI/EditProductList";
@@ -14,10 +15,6 @@ export default function NewOrderModal() {
     const [customer, setCustomer]   = useState("");
     const [date, setDate]           = useState("");
     const [status, setStatus] = useState(Status.PENDING);
-    const [valid, setValid] = useState({
-        customer: null,
-        newProducts: null
-    });
 
     useEffect(() => {
         resetForm();
@@ -30,15 +27,9 @@ export default function NewOrderModal() {
         setCustomer("");
         setDate("");
         setStatus(Status.PENDING.toString());
-        setValid({ customer: null, newProducts: null });
     };
 
-    const handleCustomer = (e) => {
-        setValid(oldValid => ({...oldValid, customer: e.target.value.length > 3}));
-        setCustomer(e.target.value);
-    };
-
-    const checkSomeInvalid = () => {
+    /*const checkSomeInvalid = () => {
         let someInvalid = false;
         Object.keys(valid).forEach(validFieldKey => {
             const isNull = valid[validFieldKey] === null;
@@ -48,10 +39,10 @@ export default function NewOrderModal() {
             someInvalid = someInvalid || !valid[validFieldKey];
         });
         return someInvalid;
-    };
+    };*/
 
     const onSubmit = () => {
-        if (checkSomeInvalid()) return;
+        if (customer.length < 3 || (products.length > 0 && !checkAllProductsValid(products))) return;
         
         setOrders(prev => [
             ...prev,
@@ -59,8 +50,12 @@ export default function NewOrderModal() {
                 id: lastOrderId + 1,
                 customer,
                 date: getDateOrNow(date),
-                status: parseInt(status, 10),
-                products
+                status: Number(status),
+                products: products.map(product => ({
+                    name: product.name,
+                    quantity: Number(product.quantity),
+                    price: Number(product.price)
+                }))
             }
         ]);
     };
@@ -69,9 +64,9 @@ export default function NewOrderModal() {
         <>
             <button onClick={() => setOpen(true)}>
                 <IconPlus />
-                <span>New Order</span>
+                <span>Nueva órden</span>
             </button>
-            <Modal title="New Order" open={open} setOpen={setOpen} onClose={resetForm}>
+            <Modal title="Nueva órden" open={open} setOpen={setOpen} onClose={resetForm}>
                 <Form onSubmit={onSubmit}>
                     <div className="w-100">
                         <label htmlFor="customer" className="required">Nombre del cliente</label>
@@ -80,9 +75,11 @@ export default function NewOrderModal() {
                             name="customer"
                             placeholder="Jorge Diaz"
                             value={customer}
-                            onChange={handleCustomer}
+                            onChange={(e) => setCustomer(e.target.value)}
                         />
-                        {valid.customer === false && <p className="error">customer {">"} 3</p>}
+                        {!(customer === "" && customer.length < 3) && (
+                            <p className="error">Mínimo 3 caracteres</p>
+                        )}
                     </div>
 
                     <div className="w-50">
@@ -93,6 +90,7 @@ export default function NewOrderModal() {
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                         />
+                        <p className="note">Por defecto: fecha actual</p>
                     </div>
 
                     <div className="w-50">
@@ -102,16 +100,14 @@ export default function NewOrderModal() {
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
-                            <option value={Status.PENDING}>Pending</option>
-                            <option value={Status.SHIPPED}>Shipped</option>
-                            <option value={Status.DELIVERED}>Delivered</option>
+                            <option value={Status.PENDING}>{getStatusName(Status.PENDING)}</option>
+                            <option value={Status.SHIPPED}>{getStatusName(Status.SHIPPED)}</option>
+                            <option value={Status.DELIVERED}>{getStatusName(Status.DELIVERED)}</option>
                         </select>
                     </div>
 
                     <EditProductList
                         elementId="newProducts"
-                        valid={valid}
-                        setValid={setValid}
                         products={products}
                         setProducts={setProducts}
                     />

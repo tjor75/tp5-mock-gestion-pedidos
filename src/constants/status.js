@@ -1,5 +1,5 @@
 export const Status = Object.freeze({
-    PENDING: 1,
-    SHIPPED: 2,
-    DELIVERED: 3
+    PENDING: 0,
+    SHIPPED: 1,
+    DELIVERED: 2
 });

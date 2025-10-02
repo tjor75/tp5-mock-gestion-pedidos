@@ -65,6 +65,10 @@ table {
 }
 
 .error { color: red; }
+.note {
+  font-size: 12px;
+  color: gray;
+}
 
 .space-between {
   display: flex;
