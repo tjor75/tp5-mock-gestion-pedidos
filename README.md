@@ -1,12 +1,31 @@
-# React + Vite
+# Gestión de Pedidos (Mock) – TP5
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web de ejemplo para la gestión y seguimiento de pedidos, desarrollada con React y Vite. Permite crear, listar y visualizar el estado de pedidos de manera sencilla, simulando el flujo básico de un sistema de gestión de órdenes.
 
-Currently, two official plugins are available:
+## Tecnologías usadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **JavaScript** (React)
+- **CSS**
+- **HTML**
+- [Vite](https://vitejs.dev/) para el entorno de desarrollo rápido.
+- [Spectre.css](https://picturepan2.github.io/spectre/) para iconos y algunos estilos.
 
-## Expanding the ESLint configuration
+## Instalación y uso
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clona el repositorio:
+    ```bash
+    git clone https://github.com/tjor75/tp5-mock-gestion-pedidos.git
+    cd tp5-mock-gestion-pedidos
+    ```
+
+2. Instala las dependencias:
+    ```bash
+    npm install
+    ```
+
+3. Corre la aplicación en modo desarrollo:
+    ```bash
+    npm run dev
+    ```
+
+4. Accede a `http://localhost:5173` en tu navegador.
